@@ -1,0 +1,73 @@
+.DetailsCard img{
+ border-radius: 20px;
+ border-radius:0  20px 20px 0;
+ height: 530px;
+ width:100%;
+
+}
+.DetailFlexdiv{
+    display: flex;
+    margin-top: 40px;
+    padding: 20px;
+    height: 570px;
+}
+.firstDivDetail{
+    background-color:#030b17;
+    width: 80%;
+    border-radius: 20px 0 0 20px;
+    box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+   
+}
+.firstDivDetail div{
+    padding-left: 30px;
+    padding-top: 40px;
+    padding-right: 20px;
+     color: white;
+}
+.DetailsCard{
+    width: 100%;
+    height: 500px;
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+}
+h4{
+    color:#deb844
+}
+h5{
+    color:#c4c6c9;
+}
+svg{
+    color: white;
+    /* font-size:x-large; */
+    margin-top: 30px;
+}
+Link{
+    color: white;
+    /* margin-top: 25px; */
+    text-decoration: none;
+}
+.langbtn{
+    border: none;
+    background-color:orangered;
+    color: white;
+    border-radius: 5px;
+    padding: 8px;
+    margin-right: 15px;
+    /* margin-top: 30px; */
+    font-size: small;
+    /* margin-bottom: 20px; */
+}
+
+.Tagname{
+    /* color:red; */
+    margin-left: 5px;
+}
+
+.bi{
+    margin-bottom: 35px;
+    /* margin-left: 30px; */
+    text-decoration: none;
+}
+.wa {
+    margin-left: 10px;
+    font-size: 20px;
+}

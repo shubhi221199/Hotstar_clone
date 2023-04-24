@@ -1,0 +1,35 @@
+
+.font {
+  font-family: "Roboto", "HelveticaNeue-Light", sans-serif;
+}
+
+.card img {
+  width: 100%;
+  border-radius: 10px;
+  height: 300px;
+  /* border: #01050e; */
+}
+.card {
+  /* width: 100%; */
+  height: 350;
+ border-radius: 10px;
+ /* padding: 100px; */
+  margin: 10px;
+
+}
+
+.mainDiv {
+  /* display:flex; */
+  overflow: hidden;
+}
+.heading {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  color: white;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  padding-left: 15px;
+}
+.card:hover{
+  scale: 1.2;
+  border-radius: 10px;
+}
