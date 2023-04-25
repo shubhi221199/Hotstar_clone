@@ -1,0 +1,25 @@
+.MainLang{
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    margin-bottom: 20px;
+    margin-top: -20px;
+    padding: 40px;
+      gap:20px;
+      background-color: #131927;
+}
+.cardLang{
+    border-radius: 10px;
+}
+.cardLang img{
+    width: 100%;
+    border-radius: 10px;
+}
+.cardLang:hover{
+     transform: scale(1.3);
+    cursor: pointer;
+}
+.langh3{
+    color: white;
+    margin-top: 100px;
+    margin-left: 50px;  
+}

@@ -1,0 +1,25 @@
+.Mdiv{
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    margin-bottom: 20px;
+    margin-top: -20px;
+    padding: 40px;
+      gap:20px;
+      background-color: #131927;
+}
+
+.CardChan{
+    border-radius: 10px;
+}
+.CardChan img{
+    width:100%;
+    border-radius: 10px;
+}
+.CardChan:hover{
+    scale: 1.3;
+}
+.h3tag{
+    margin-top: 100px;
+    color:white;
+    margin-left:50px;
+}
