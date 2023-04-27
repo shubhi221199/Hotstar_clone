@@ -1,110 +1,96 @@
-// import React from 'react'
-// import firebase from '../firebase'
+import React, { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Form, Alert } from "react-bootstrap";
+import { Button } from "react-bootstrap";
+import "react-phone-number-input/style.css";
+import PhoneInput from "react-phone-number-input";
+import { AuthContext } from "./Context";
 
-// const Login = () => {
+const Login = () => {
+  const [error, setError] = useState("");
+  const [number, setNumber] = useState("");
+  const [flag, setFlag] = useState(false);
+  const [otp, setOtp] = useState("");
+  const [result, setResult] = useState("");
+  const {  setUpRecaptcha,login} = useContext(AuthContext);
+  const navigate = useNavigate();
 
-//     const handleFirebase =()=>{
-//     let recaptcha = new firebase.auth.RecaptchaVerifier("captcha")
-//     let number = "";
-//     firebase.auth().signInWithPhoneNumber(number,recaptcha).then((e)=>{
-//         let code = prompt("enter otp")
+  const getOtp = async (e) => {
+    e.preventDefault();
+    console.log(number);
+    setError("");
+    if (number === "" || number === undefined)
+      return setError("Please enter a valid phone number!");
+    try {
+      const response = await setUpRecaptcha(number);
+      setResult(response);
+      setFlag(true);
+      console.log(response)
+    } catch (err) {
+      setError(err.message);
+    }
+  };
 
-//         if(code==null){
-//             return ;
-//         }
-//         e.confirm(code).then((res)=>{
-// console.log(res,".....")
-//         }) 
-//     }).catch(()=>{
-//         console.log("error")
-//     })
-//     }
+  const verifyOtp = async (e) => {
+    e.preventDefault();
+    setError("");
+    if (otp === "" || otp === null) return;
+    try {
+      await result.confirm(otp);
+     login()
+      navigate("/");
+    } catch (err) {
+      setError(err.message);
+    }
+  };
 
+  return (
+    <>
+      <div className="p-4 box">
+        <h2 className="mb-3">Firebase Phone Auth</h2>
+        {error && <Alert variant="danger">{error}</Alert>}
+        <Form onSubmit={getOtp} style={{ display: !flag ? "block" : "none" }}>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <PhoneInput
+              defaultCountry="IN"
+              value={number}
+              onChange={setNumber}
+              placeholder="Enter Phone Number"
+            />
+            <div id="recaptcha-container"></div>
+          </Form.Group>
+          <div className="button-right">
+            <Link to="/">
+              <Button variant="secondary">Cancel</Button>
+            </Link>
+            &nbsp;
+            <Button type="submit" variant="primary">
+              Send Otp
+            </Button>
+          </div>
+        </Form>
 
-//   return (
-//     <>
-//         <div id = "captcha"></div>
-//       <button onClick={handleFirebase}>Login</button>
-//     </>
-//   )
-// }
-
-// export default Login
-
-
-
-import React from 'react'
-import firebase from '../firebase'
-
-class Login extends React.Component {
-  handleChange = (e) =>{
-    const {name, value } = e.target
-    this.setState({
-        [name]: value
-      })
-  }
-  configureCaptcha = () =>{
-    window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('sign-in-button', {
-      'size': 'invisible',
-      'callback': (response) => {
-        // reCAPTCHA solved, allow signInWithPhoneNumber.
-        this.onSignInSubmit();
-        console.log("Recaptca varified")
-      },
-      defaultCountry: "IN"
-    });
-  }
-  onSignInSubmit = (e) => {
-    e.preventDefault()
-    this.configureCaptcha()
-    const phoneNumber = "+91" + this.state.mobile
-    console.log(phoneNumber)
-    const appVerifier = window.recaptchaVerifier;
-    firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier)
-        .then((confirmationResult) => {
-          // SMS sent. Prompt user to type the code from the message, then sign the
-          // user in with confirmationResult.confirm(code).
-          window.confirmationResult = confirmationResult;
-          console.log("OTP has been sent")
-          // ...
-        }).catch((error) => {
-          // Error; SMS not sent
-          // ...
-          console.log("SMS not sent")
-        });
-  }
-  onSubmitOTP = (e) =>{
-    e.preventDefault()
-    const code = this.state.otp
-    console.log(code)
-    window.confirmationResult.confirm(code).then((result) => {
-      // User signed in successfully.
-      const user = result.user;
-      console.log(JSON.stringify(user))
-      alert("User is verified")
-      // ...
-    }).catch((error) => {
-      // User couldn't sign in (bad verification code?)
-      // ...
-    });
-  }
-  render() {
-    return (
-      <div>
-        <h2>Login Form</h2>
-        <form onSubmit={this.onSignInSubmit}>
-          <div id="sign-in-button"></div>
-          <input type="number" name="mobile" placeholder="Mobile number" required onChange={this.handleChange}/>
-          <button type="submit">Submit</button>
-        </form>
-
-        <h2>Enter OTP</h2>
-        <form onSubmit={this.onSubmitOTP}>
-          <input type="number" name="otp" placeholder="OTP Number" required onChange={this.handleChange}/>
-          <button type="submit">Submit</button>
-        </form>
+        <Form onSubmit={verifyOtp} style={{ display: flag ? "block" : "none" }}>
+          <Form.Group className="mb-3" controlId="formBasicOtp">
+            <Form.Control
+              type="otp"
+              placeholder="Enter OTP"
+              onChange={(e) => setOtp(e.target.value)}
+            />
+          </Form.Group>
+          <div className="button-right">
+            <Link to="/">
+              <Button variant="secondary">Cancel</Button>
+            </Link>
+            &nbsp;
+            <Button type="submit" variant="primary">
+              Verify
+            </Button>
+          </div>
+        </Form>
       </div>
-    )
-  }
-}
-export default Login
+    </>
+  );
+};
+
+export default Login;

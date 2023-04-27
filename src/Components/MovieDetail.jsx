@@ -28,7 +28,8 @@ const MovieDetail = () => {
   // console.log(cons)
   return (
     <div>
-      <h2 style={{ color: "crimson" }}>Details: {id}</h2>
+      <h2></h2>
+      {/* <h2 style={{ color: "crimson" }}>Details: {id}</h2> */}
       {
         <div className="DetailFlexdiv">
           <div className="firstDivDetail">

@@ -14,6 +14,9 @@ import ShowByLang from './Components/ShowByLang';
 import ShowByGenre from './Components/ShowByGenre';
 import Channel from './Components/Channel';
 import Login from './Components/Login';
+import Subscribe from './Components/Subscribe';
+
+import SearchInp from './Components/SearchInp';
 // import firebase from './Components/firebase';
 
 function App() {
@@ -21,6 +24,7 @@ function App() {
     <BrowserRouter>
       <div>
         <NavbarHotStar />
+       
         {/* <Home/> */}
         
        
@@ -38,6 +42,8 @@ function App() {
         <Route path='/ShowByGenre/:id' element={<ShowByGenre/>}/>
         <Route path ='/Channel' element={<Channel/>}/>
         <Route path ='/login' element={<Login/>}/>
+        <Route path="/subscribe" element={<Subscribe/>}/>
+        <Route path="/search" element={<SearchInp/>}/>
       </Routes>
     </BrowserRouter>
   );

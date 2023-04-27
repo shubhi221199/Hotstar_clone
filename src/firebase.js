@@ -1,18 +1,23 @@
 
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
-import firebase from 'firebase/app'
-import 'firebase/auth'
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyDt39t15P8hpjGASbQtanOUu7xFsR1HI30",
+  authDomain: "myhotstarclone.firebaseapp.com",
+  projectId: "myhotstarclone",
+  storageBucket: "myhotstarclone.appspot.com",
+  messagingSenderId: "70418413957",
+  appId: "1:70418413957:web:12c220ffe134f6cf99acec",
+  measurementId: "G-8NYWC4CM6R"
+};
 
-var firebaseConfig = {
-    apiKey: "AIzaSyB9-LZguxuElQ_jLqAMorTWJxnI0DFwkkQ",
-    authDomain: "hotstarclone-f8790.firebaseapp.com",
-    projectId: "hotstarclone-f8790",
-    storageBucket: "hotstarclone-f8790.appspot.com",
-    messagingSenderId: "571992677090",
-    appId: "1:571992677090:web:be05bc9c4607874f3e1cbb",
-    measurementId: "G-15BL4XJ78P"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  
-export default firebase
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+
+export const auth = getAuth(app);

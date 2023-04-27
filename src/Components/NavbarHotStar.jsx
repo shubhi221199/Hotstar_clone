@@ -3,37 +3,56 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import "./Navbar.css";
 import { List, Search } from "react-bootstrap-icons";
 import Dropdown from "react-bootstrap/Dropdown";
 import axios from "axios";
+import { AuthContext } from "./Context";
+import SearchInp from "./SearchInp";
+import { useNavigate } from "react-router-dom";
+
 
 function NavbarHotStar() {
   const [search, setSearch] = useState("");
+  const [movies,setMovies] = useState([])
+   const navigate = useNavigate()
+    
+  let {isLogin}=useContext(AuthContext)
+  let apiKey = "939cb94eb1470cd3b74b2ec575a26449";
+  let url =`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}`;
 
   const getData = (search) => {
-    axios
-      .get(`http://www.omdbapi.com/?apikey=187a109e&t=${search}`)
+    axios.get(`${url}&language=en-US&query=${search}&page=1&include_adult=false`)
+    
       .then((res) => {
-        console.log(res.data);
-        // setSearch(res.data)
+        console.log(res.data.results);
+        setMovies(res.data.results)
+          
       });
   };
 
   useEffect(() => {
-    //  const idSearch = setTimeout(()=>{
-    getData();
-    //  },1000)
+     const idSearch = setTimeout(()=>{
+    getData(search);
+     },.100)
 
-    //  return clearTimeout()
+     return ()=>{
+       clearTimeout(idSearch)
+     }
   }, [search]);
 
   const showDropdown = () => {
     document.querySelector(".dropdown-content").style.display = "block";
   };
 
+  const handleSearchbar = (id)=>{
+     setSearch("")
+     navigate(`/MovieDetail/${id}`)
+  }
+
   return (
+    <>
     <Navbar fixed="top" collapseOnSelect expand="sm" bg="dark" variant="dark">
       <Container className="navCont">
         <Navbar.Brand href="">
@@ -171,17 +190,71 @@ function NavbarHotStar() {
             />
             <Search className="searchicon" />
 
+      
+   
+
+           {/* <div> 
+            {
+              movies.map((elm)=>{
+                return (
+                  <div>
+                    <img width={"60px"}
+                       src={`https://image.tmdb.org/t/p/original${elm.backdrop_path}`}  
+                    alt="elm" />
+                    <h2 style={{color:"red", marginTop:"100px"}}>{elm.title}</h2>
+                  </div>
+                )
+              })
+            }
+            </div> */}
+
+
+
             <div className="loginbtn">
-              <Button as="input" type="submit" value="Subscribe" size="sm" />{" "}
-              <Link to="/login"> <Button variant="dark">Login</Button>{" "}</Link>
+           <Link to = "/subscribe"><Button as="input" type="submit" value="Subscribe" size="sm" />{" "}</Link>   
+
+
+
+           {!isLogin? <Link to="/login"><Button variant="dark">Login</Button>{" "}</Link>: "Logout"}   
              
 
 
             </div>
           </Nav>
+
+         
         </Navbar.Collapse>
+
+
+        
       </Container>
     </Navbar>
+
+    <div>
+       { search==""? null : <div>
+       <div className='movDiv'> 
+            {
+              movies.map((elm)=>{
+                return (
+               <div  onClick={(()=>{
+                handleSearchbar(elm.id)
+               })} className='movCard'>
+                    <img width={"100%"}
+                       src={`https://image.tmdb.org/t/p/original${elm.backdrop_path}`}  
+                    alt="elm" />
+                    {/* <h2 style={{color:"red", marginTop:"100px"}}>{elm.title}</h2> */}
+                  </div>
+                 
+                                 
+                  
+                )
+              })
+            }
+            </div>
+    </div>
+       }
+    </div>
+     </>
   );
 }
 

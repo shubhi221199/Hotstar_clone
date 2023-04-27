@@ -1,0 +1,13 @@
+.movDiv{
+    height: 400px;
+    width: 250px;
+    overflow: scroll;
+    margin-top: 80px;
+    position: relative;
+    left:800px;
+    z-index: -1;
+}
+
+.movCard img {
+    width: 100%;
+}
