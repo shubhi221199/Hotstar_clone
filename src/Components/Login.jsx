@@ -5,6 +5,7 @@ import { Button } from "react-bootstrap";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import { AuthContext } from "./Context";
+import './Login.css'
 
 const Login = () => {
   const [error, setError] = useState("");
@@ -45,13 +46,16 @@ const Login = () => {
   };
 
   return (
-    <>
+    <div className="mainDivlog">
       <div className="p-4 box">
         <h2 className="mb-3">Firebase Phone Auth</h2>
         {error && <Alert variant="danger">{error}</Alert>}
-        <Form onSubmit={getOtp} style={{ display: !flag ? "block" : "none" }}>
+        <Form className="box1" onSubmit={getOtp} style={{ display: !flag ? "block" : "none" }}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
+            <h3 style={{color:"white",marginTop:"-20px"}}>Login to continue</h3>
             <PhoneInput
+      
+            className="inp"
               defaultCountry="IN"
               value={number}
               onChange={setNumber}
@@ -61,18 +65,20 @@ const Login = () => {
           </Form.Group>
           <div className="button-right">
             <Link to="/">
-              <Button variant="secondary">Cancel</Button>
+              <Button className="wid" variant="secondary">Cancel</Button>
             </Link>
             &nbsp;
-            <Button type="submit" variant="primary">
+            <Button className="wid" type="submit" variant="primary">
               Send Otp
             </Button>
           </div>
         </Form>
 
-        <Form onSubmit={verifyOtp} style={{ display: flag ? "block" : "none" }}>
+        <Form className="otpform" onSubmit={verifyOtp} style={{ display: flag ? "block" : "none" }}>
           <Form.Group className="mb-3" controlId="formBasicOtp">
+            <h5 style={{color:"#192133"}}>Enter Otp</h5>
             <Form.Control
+            className="inp"
               type="otp"
               placeholder="Enter OTP"
               onChange={(e) => setOtp(e.target.value)}
@@ -86,10 +92,11 @@ const Login = () => {
             <Button type="submit" variant="primary">
               Verify
             </Button>
+            <h5 style={{color:"#192133"}}>Enter Otp</h5>
           </div>
         </Form>
       </div>
-    </>
+    </div>
   );
 };
 

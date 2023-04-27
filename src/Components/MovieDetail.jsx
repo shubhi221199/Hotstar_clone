@@ -4,10 +4,13 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "./MoviesDetail.css";
 import Movies from "./Movies";
+import { AuthContext } from "./Context";
+import { useContext } from "react";
 
 const MovieDetail = () => {
   const [data, setData] = useState({});
   const { id } = useParams();
+  const{isLogin} =  useContext(AuthContext)
 
   useEffect(() => {
     getData();
@@ -65,7 +68,7 @@ const MovieDetail = () => {
                   <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
                 </svg>
               
-              </Link><span >  Watch Trailer</span>
+              </Link><span >  Watch Movie</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -92,11 +95,16 @@ const MovieDetail = () => {
               </svg>
                 <span className="Tagname">Share</span>
               <br></br>
-              <button className="langbtn">English</button>
-              <button className="langbtn">தமிழ்</button>
+
+              {
+                isLogin?    <Link to={`/PlayMovie/${id}`}><button className="langbtn">Watch now</button></Link>:
+               <Link to ="/subscribe"> <button className="langbtn"> subscribe to Watch </button></Link>
+              }
+             
+              {/* <button className="langbtn">தமிழ்</button>
               <button className="langbtn">हिन्दी</button>
               <button className="langbtn">తెలుగు</button>
-              <button className="langbtn">ಕನ್ನಡ</button>
+              <button className="langbtn">ಕನ್ನಡ</button> */}
             </div>
           </div>
 

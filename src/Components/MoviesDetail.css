@@ -47,10 +47,11 @@ Link{
 }
 .langbtn{
     border: none;
-    background-color:orangered;
+    background-color:rgb(205, 99, 6);
     color: white;
     border-radius: 5px;
     padding: 8px;
+    width: 200px;
     margin-right: 15px;
     /* margin-top: 30px; */
     font-size: small;

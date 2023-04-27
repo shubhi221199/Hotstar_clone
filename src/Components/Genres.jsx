@@ -1,7 +1,9 @@
 import React from "react";
 import "./Genres.css";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const Genres = () => {
+  const navigate = useNavigate()
   const Gendata = [
     {
       img: "https://img1.hotstarext.com/image/upload/f_auto,q_90,w_1920/sources/r1/cms/prod/9188/1429188-a-8862be91a142",
@@ -180,6 +182,11 @@ const Genres = () => {
     },
   ];
 
+  const handleGenre = (id,genre)=>{
+     localStorage.setItem("Genre",(genre))
+     navigate(`/ShowByGenre/${id}`)
+  }
+
   return (
     <>
       <h3 className="h2Gen">Genres
@@ -187,14 +194,27 @@ const Genres = () => {
       <div className="GenDivmain">
         {Gendata.map((item) => {
           return (
-            <Link to={`/ShowByGenre/${item.id}`}>
-              <div className="gencard">
-                <img
+            // <Link to={`/ShowByGenre/${item.id}`}>
+            //   {
+            //     localStorage.setItem("genrename",(item.genre))
+            //   }
+            //   <div className="gencard">
+            //     <img
+            //       src={item.img}
+            //       alt=""
+            //     />{" "}
+            //   </div>
+            // </Link>
+
+           
+
+            <div onClick={(()=>{handleGenre(item.id,item.genre) })} className="gencard">
+              <img
                   src={item.img}
                   alt=""
                 />{" "}
               </div>
-            </Link>
+
           );
         })}
       </div>

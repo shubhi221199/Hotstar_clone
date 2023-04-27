@@ -8,19 +8,23 @@ import './ShowByGen.css'
 const ShowByGenre = () => {
   const [data,setData]=useState([])
   const {id} = useParams()
+   let gen = localStorage.getItem("Genre")
     useEffect(()=>{
+    
         getdata()
     },[])
+
+    
     const getdata = ()=>{
         axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=939cb94eb1470cd3b74b2ec575a26449&with_genres=${id}&with_original_language=te`).then((res)=>{
 console.log(res.data.results)
 setData(res.data.results)
         })
     }
-
+console.log(gen)
   return (
     <>
-    <h3 style={{color:"white", paddingLeft:"30px",marginTop:"100px"}}>{id}</h3>
+    <h3 style={{color:"white", paddingLeft:"30px",marginTop:"100px"}}>{gen}</h3>
     <div className='mainD'>
 
         {

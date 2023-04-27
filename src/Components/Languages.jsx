@@ -79,7 +79,7 @@ const handleCode = (codem,lang) =>{
             LangArr.map((elm)=>{
                 return (
                     <div className='cardLang' onClick={()=>{handleCode(elm.code,elm.name)}}>
-                      {/* <h1 >{elm.name}</h1> */}
+                      <h5 >{elm.name}</h5>
                         <img src={elm.img} alt="img" />
                     </div>
                 )

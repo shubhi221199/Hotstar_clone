@@ -5,7 +5,7 @@ import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import "./Navbar.css";
-import { List, Search } from "react-bootstrap-icons";
+import { List, Search,People_circle } from "react-bootstrap-icons";
 import Dropdown from "react-bootstrap/Dropdown";
 import axios from "axios";
 import { AuthContext } from "./Context";
@@ -215,7 +215,8 @@ function NavbarHotStar() {
 
 
 
-           {!isLogin? <Link to="/login"><Button variant="dark">Login</Button>{" "}</Link>: "Logout"}   
+           {!isLogin? <Link to="/login"><Button variant="dark">Login</Button>{" "}</Link>: 
+            <Button variant="secondary">Admin</Button> }   
              
 
 
@@ -236,15 +237,14 @@ function NavbarHotStar() {
             {
               movies.map((elm)=>{
                 return (
-               <div  onClick={(()=>{
+              <div  onClick={(()=>{
                 handleSearchbar(elm.id)
                })} className='movCard'>
                     <img width={"100%"}
                        src={`https://image.tmdb.org/t/p/original${elm.backdrop_path}`}  
                     alt="elm" />
                     {/* <h2 style={{color:"red", marginTop:"100px"}}>{elm.title}</h2> */}
-                  </div>
-                 
+                  </div>                
                                  
                   
                 )
