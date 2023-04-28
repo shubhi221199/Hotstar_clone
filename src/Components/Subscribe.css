@@ -1,0 +1,77 @@
+@keyframes animatedBackground {
+    from {
+      background-position: 0 100%;
+    }
+    to {
+      background-position: 100% 0;
+    }
+  }
+  .mainDivsub {
+    width: 100%;
+    height: 100vh;
+    background-position: 0px 0px;
+    background-repeat: repeat-x;
+    animation: animatedBackground 25s linear infinite alternate;
+    background-image: url("https://hotstar-tawny.vercel.app/static/media/login-background.05b1a1b3088cbb458939.jpg");
+    text-align: center;
+  }
+
+  .ModalBody{
+    width: 100%;
+    height: 100vh;
+    background-position: 0px 0px;
+    background-repeat: repeat-x;
+    animation: animatedBackground 25s linear infinite alternate;
+    background-image: url("https://hotstar-tawny.vercel.app/static/media/login-background.05b1a1b3088cbb458939.jpg");
+    /* text-align: center; */
+    color: white;
+    border-color: #0f1014;
+    display: flex;
+  }
+  .ModalTitle{
+    display: flex;
+    border-color: #0f1014;
+    background-color: #0f1014;
+  }
+  .ModalTitle img {
+    width: 130px;
+    margin-left: 50px;
+  }
+  .ModalHeader{
+    background-color: #0f1014;
+    color: white;
+   justify-content:flex-end;}
+
+
+   .rightDiv{
+    margin-left: 850px;
+    margin-top: 20px;
+    /* padding: 20px; */
+   }
+
+   .divContainer{
+    /* display: flex; */
+    background-color: #0f1014;
+    border-radius: 20px;
+    color: white;
+    width: 100%;
+    height: 600px;
+    padding: 30px;
+   }
+
+   .super{
+    display: flex;
+    justify-content:space-between;
+   }
+  
+   .super >div{
+    border: 3px solid #a39c9c;
+    width: 130px;
+    border-radius: 15px;
+   }
+
+   .continue{
+    margin-top: 20px;
+    height: 40px;
+   }
+   
