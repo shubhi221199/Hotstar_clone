@@ -61,9 +61,9 @@ function NavbarHotStar() {
             <span>
               {" "}
               <List
-                onClick={() => {
-                  showDropdown();
-                }}
+                // onClick={() => {
+                //   showDropdown();
+                // }}
                 className="list"
               />{" "}
             </span>

@@ -10,17 +10,21 @@ import { useContext } from "react";
 import { AuthContext } from './Context'
 
 
-
-
-
 function Subscribe() {
   const values = [true];
   const [fullscreen, setFullscreen] = useState(true);
   const [show, setShow] = useState(true);
+  const [packname,setPackname]= useState("Plan")
 
   let {fireLogout,logout,isLogin}=useContext(AuthContext)
 
        let navigate = useNavigate()
+   const handlePackage = (pname) => {
+       
+       let btndivh5 = document.getElementById("btndivh5")
+       btndivh5.style.color ="#deb844";
+       setPackname(pname);
+   }    
   
   const handleLogout = async ()=>{
   
@@ -42,6 +46,26 @@ function Subscribe() {
         alert("Login to subscribe!")
       }
     }
+
+    let data =[
+      {
+        name:"Super",
+        pack:" ₹899/year"
+
+      },
+      {
+        name:"Premium",
+        pack:" ₹1499/year"
+
+      },
+      {
+        name:"Premium",
+        pack:" ₹299/month"
+
+      }
+    ]
+
+
 
   return (
     <div className="mainDivsub" style={{ marginTop: "80px" }}>
@@ -78,7 +102,7 @@ function Subscribe() {
         <Modal.Body className="ModalBody">
           <div>
             {" "}
-            <h1>Subscribe now and start streaming</h1>
+            <h2>Subscribe now and start streaming</h2>
           </div>
 
           <div className="divContainer">
@@ -160,14 +184,21 @@ Atmos available on select titles only</h5></td>
 </table>
 
 <div className="super">
-  <div>Super &nbsp; &nbsp;₹899/year</div>
-  <div>Premium ₹1499/year</div>
-  <div>Premium ₹299/month</div>
+ {
+  data.map((elm)=>{
+    return (
+      <div className="btndiv" onClick={(()=>{handlePackage(elm.name)})}>
+        <h6 id="btndivh5">{elm.name}</h6>
+        <h6>{elm.pack}</h6>
+      </div>
+    )
+  })
+ }
 </div>
 
 
                   <div >
-  <button className="continue" onClick={(()=>{handleSubscribe()})}>Continue with plan</button>
+  <button className="continue" onClick={(()=>{handleSubscribe()})}>Continue with {packname}</button>
 </div> 
           </div>
   

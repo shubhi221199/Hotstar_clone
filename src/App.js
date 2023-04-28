@@ -17,6 +17,7 @@ import Login from './Components/Login';
 import Subscribe from './Components/Subscribe';
 
 import SearchInp from './Components/SearchInp';
+import Footer from './Components/Footer';
 // import firebase from './Components/firebase';
 
 function App() {
@@ -24,9 +25,7 @@ function App() {
     <BrowserRouter>
       <div>
         <NavbarHotStar />
-       
-        {/* <Home/> */}
-        
+      
        
       </div>
       <Routes>
@@ -45,6 +44,12 @@ function App() {
         <Route path="/subscribe" element={<Subscribe/>}/>
         <Route path="/search" element={<SearchInp/>}/>
       </Routes>
+
+<div>
+  <Footer/>
+</div>
+
+
     </BrowserRouter>
   );
 }
