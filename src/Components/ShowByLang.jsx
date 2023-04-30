@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import Languages from './Languages'
 import { Link } from 'react-router-dom'
 import './ShowByLang.css'
+import Loader from './Loader'
 
 const ShowByLang = () => {
     const [data,setData]= useState([])
@@ -27,17 +28,17 @@ const getdataByLang = (lang="en") =>{
         
         {/* <Languages/> */}
         {
-            data.map((elm)=>{
-                return (
-                    <Link to ={`/MovieDetail/${elm.id}`}>
-                    <div className='cardDiv'>
-                        <img 
-                         src={`https://image.tmdb.org/t/p/original${elm.backdrop_path}`} 
-                         alt="elm" width={"400px"}/>
-                    </div>
-                    </Link>
-                )
-            })
+           data.length>0? data.map((elm)=>{
+            return (
+                <Link to ={`/MovieDetail/${elm.id}`}>
+                <div className='cardDiv'>
+                    <img 
+                     src={`https://image.tmdb.org/t/p/original${elm.backdrop_path}`} 
+                     alt="elm" width={"400px"}/>
+                </div>
+                </Link>
+            )
+        }): <Loader/>
         }
       
     </div>

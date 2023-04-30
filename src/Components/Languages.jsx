@@ -1,6 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import './Languages.css'
+import Loader from './Loader';
 
 const Languages = () => {
 const navigate = useNavigate()
@@ -76,14 +77,14 @@ const handleCode = (codem,lang) =>{
     <h3 className='langh3'>Languages</h3>
     <div className='MainLang'>
         {
-            LangArr.map((elm)=>{
-                return (
-                    <div className='cardLang' onClick={()=>{handleCode(elm.code,elm.name)}}>
-                      <h5 >{elm.name}</h5>
-                        <img src={elm.img} alt="img" />
-                    </div>
-                )
-            })
+           LangArr.length>0? LangArr.map((elm)=>{
+            return (
+                <div className='cardLang' onClick={()=>{handleCode(elm.code,elm.name)}}>
+                  <h5 >{elm.name}</h5>
+                    <img src={elm.img} alt="img" />
+                </div>
+            )
+        }):<Loader/>
         }
       
     </div></>

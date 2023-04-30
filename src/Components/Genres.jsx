@@ -2,6 +2,7 @@ import React from "react";
 import "./Genres.css";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import Loader from "./Loader";
 const Genres = () => {
   const navigate = useNavigate()
   const Gendata = [
@@ -192,31 +193,20 @@ const Genres = () => {
       <h3 className="h2Gen">Genres
       </h3>
       <div className="GenDivmain">
-        {Gendata.map((item) => {
-          return (
-            // <Link to={`/ShowByGenre/${item.id}`}>
-            //   {
-            //     localStorage.setItem("genrename",(item.genre))
-            //   }
-            //   <div className="gencard">
-            //     <img
-            //       src={item.img}
-            //       alt=""
-            //     />{" "}
-            //   </div>
-            // </Link>
+        {
+     Gendata.length>0?
+     Gendata.map((item) => {
+      return (
+        <div onClick={(()=>{handleGenre(item.id,item.genre) })} className="gencard">
+          <img
+              src={item.img}
+              alt=""
+            />{" "}
+          </div>
 
-           
-
-            <div onClick={(()=>{handleGenre(item.id,item.genre) })} className="gencard">
-              <img
-                  src={item.img}
-                  alt=""
-                />{" "}
-              </div>
-
-          );
-        })}
+      );
+    }): <Loader/>
+        }
       </div>
     </>
   );

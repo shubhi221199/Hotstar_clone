@@ -5,6 +5,8 @@ import { useEffect,useState } from 'react';
 import axios from 'axios';
 import './Movies.css'
 import { Link } from 'react-router-dom';
+import Loader from './Loader';
+
 
 const Movies = ({heading ,Url}) => {
   const [data, setData] = useState([]);
@@ -57,18 +59,18 @@ const Movies = ({heading ,Url}) => {
       >
 
     {
-     data.map((item) => {
-          return (
-           <Link className="cardLink" to={`/MovieDetail/${item.id}`}> 
-           <div className='card' >
-              <img 
-                src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`} 
-                alt="item"
-              />
-            </div>
-            </Link>
-          );
-        })
+     data.length>0? data.map((item) => {
+      return (
+       <Link className="cardLink" to={`/MovieDetail/${item.id}`}> 
+       <div className='card' >
+          <img 
+            src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`} 
+            alt="item"
+          />
+        </div>
+        </Link>
+      );
+    }):<Loader/>
     }
 
   

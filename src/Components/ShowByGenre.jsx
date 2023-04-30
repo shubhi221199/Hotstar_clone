@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import './ShowByGen.css'
+import Loader from './Loader'
 
 const ShowByGenre = () => {
   const [data,setData]=useState([])
@@ -28,17 +29,17 @@ console.log(gen)
     <div className='mainD'>
 
         {
-            data.map((item)=>{
-                return(
-                  <Link to={`/MovieDetail/${item.id}`}>  <div className='cardDiv'>
-                        <img 
-                         src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`} 
-                        alt=""
-                        width={"300px"} />
-                    </div>
-                    </Link>
-                )
-            })
+          data.length>0?  data.map((item)=>{
+            return(
+              <Link to={`/MovieDetail/${item.id}`}>  <div className='cardDiv'>
+                    <img 
+                     src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`} 
+                    alt=""
+                    width={"300px"} />
+                </div>
+                </Link>
+            )
+        }):<Loader/>
         }
       
     </div></>

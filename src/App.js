@@ -15,9 +15,10 @@ import ShowByGenre from './Components/ShowByGenre';
 import Channel from './Components/Channel';
 import Login from './Components/Login';
 import Subscribe from './Components/Subscribe';
-
 import SearchInp from './Components/SearchInp';
 import Footer from './Components/Footer';
+import Navmovies from './Components/Navmovies';
+import Loader from './Components/Loader';
 // import firebase from './Components/firebase';
 
 function App() {
@@ -32,7 +33,7 @@ function App() {
       <Route path="/" element={<Home/>}/>
         <Route path="/Tv" element={<Tv/>}/>
         <Route path="/Movies" element={<Movies/>} />
-        <Route path="/Sports" element={<Sports/>}/>
+        {/* <Route path="/Sports" element={<Sports/>}/> */}
         <Route path="/MovieDetail/:id" element={<MovieDetail/>}/>
         <Route path='/PlayMovie/:id' element={<PlayMovie/>}/>
         <Route path='/Genres' element={<Genres/>}/>
@@ -43,6 +44,8 @@ function App() {
         <Route path ='/login' element={<Login/>}/>
         <Route path="/subscribe" element={<Subscribe/>}/>
         <Route path="/search" element={<SearchInp/>}/>
+        <Route path="/Navmovies" element={<Navmovies/>}/>
+        <Route path="/Loader" element={<Loader/>}/>
       </Routes>
 
 <div>

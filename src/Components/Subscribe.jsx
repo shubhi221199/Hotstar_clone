@@ -8,6 +8,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from './Context'
+import { Link } from "react-router-dom";
 
 
 function Subscribe() {
@@ -73,13 +74,15 @@ function Subscribe() {
       <Modal show={show} fullscreen={fullscreen} onHide={() => setShow(false)}>
         <Modal.Header className="ModalHeader" closeButton>
           <Modal.Title className="ModalTitle">
-            <div>
+          <Link to="/">
+          <div>
               {" "}
               <img
                 src="https://img1.hotstarext.com/image/upload/f_auto,q_90,w_256/v1656431456/web-images/logo-d-plus.svg"
                 alt=""
               />
             </div>
+            </Link>
 
             <div className="rightDiv">
               <Dropdown className="mt-2">

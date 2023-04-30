@@ -5,6 +5,7 @@ import Carousel from "react-multi-carousel";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import "./Home.css";
+import Loader from "./Loader";
 
 const Home = () => {
   const [results, setResults] = useState([]);
@@ -54,28 +55,30 @@ const Home = () => {
           swipeable={true}
           infinite={true}
         >
-          {results.map((item) => {
+          {
+          results.map((item) => {
             return (
-              <Link className="Container" to={`/MovieDetail/${item.id}`}>
-                <div className="HomeFlexDiv">
-                  <div className="cardHomeSide">
-                    <div>
-                      <h3>{item.title}</h3>
-                      <h4>Movie Rating : {item.vote_average.toFixed(1)}</h4>
-                      <h5>{`${item.overview.slice(0,130)}....`}</h5>
-                    </div>
-                  </div>
+               results.length>0? <Link className="Container" to={`/MovieDetail/${item.id}`}>
+               <div className="HomeFlexDiv">
+                 <div className="cardHomeSide">
+                   <div>
+                     <h3>{item.title}</h3>
+                     <h4>Movie Rating : {item.vote_average.toFixed(1)}</h4>
+                     <h5>{`${item.overview.slice(0,130)}....`}</h5>
+                   </div>
+                 </div>
 
-                  <div className="cardHome">
-                    <img
-                      src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`}
-                      alt="item"
-                    />
-                  </div>
-                </div>
-              </Link>
+                 <div className="cardHome">
+                   <img
+                     src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`}
+                     alt="item"
+                   />
+                 </div>
+               </div>
+             </Link>:<Loader/>
             );
-          })}
+          })
+          }
         </Carousel>
         ;
       </div>
